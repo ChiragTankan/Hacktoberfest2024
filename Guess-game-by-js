@@ -1,0 +1,33 @@
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+let x = 10;
+let y = 10;
+let dx = 2;
+let dy = 2;
+
+function gameLoop() {
+    // Clear the canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw the square
+    ctx.fillRect(x, y, 20, 20);
+
+    // Update the position
+    x += dx;
+    y += dy;
+
+    // Bounce off the walls
+    if (x + 20 > canvas.width || x < 0) {
+        dx = -dx;
+    }
+    if (y + 20 > canvas.height || y < 0) {
+        dy = -dy;
+    }
+
+    // Request the next frame
+    requestAnimationFrame(gameLoop);
+}
+
+// Start the game loop
+gameLoop();
